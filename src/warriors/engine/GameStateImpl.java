@@ -7,6 +7,7 @@ import warriors.contracts.Map;
 
 public class GameStateImpl implements GameState {
 
+    private String gameId;
     private String playerName;
     private Hero hero;
     private Map map;
@@ -15,6 +16,7 @@ public class GameStateImpl implements GameState {
     private int locationHero = 0;
 
     public GameStateImpl ( String playerName, Hero hero, Map map){
+        this.gameId = gameId;
         this.playerName = playerName;
         this.hero = hero;
         this.map = map;
@@ -29,7 +31,7 @@ public class GameStateImpl implements GameState {
 
     @Override
     public String getGameId() {
-        return "L'ID est : ";
+        return gameId;
     }
 
     @Override
