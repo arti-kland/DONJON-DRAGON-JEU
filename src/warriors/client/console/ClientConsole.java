@@ -1,11 +1,5 @@
 package warriors.client.console;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
-
 import warriors.contracts.GameState;
 import warriors.contracts.GameStatus;
 import warriors.contracts.Hero;
@@ -30,15 +24,15 @@ public class ClientConsole {
 			}			
 		}while(!menuChoice.equals(MENU_QUITTER));
 		sc.close();
-		System.out.println("à bientôt");
+		System.out.println("Ã  bientÃ´t");
 	}
 
 	private static void startGame(WarriorsAPI warriors, Scanner sc) {
 		System.out.println();
-		System.out.println("Entrez votre nom:");
+		System.out.println("Entrez votre nom : ");
 		String playerName = sc.nextLine();
 		
-		System.out.println("Choisissez votre héro:");
+		System.out.println("Choisissez votre hÃ©ro : ");
 		for(int i = 0; i < warriors.getHeroes().size(); i++) {
 			Hero heroe = warriors.getHeroes().get(i);
 			System.out.println(i+1 + " - " + heroe.getName());
@@ -46,19 +40,21 @@ public class ClientConsole {
 			System.out.println("    Niveau de vie : " + heroe.getLife());
 		}
 		Hero chosenHeroe = warriors.getHeroes().get(Integer.parseInt(sc.nextLine()) - 1);
+		System.out.println("Vous avez choisi : " + chosenHeroe.getName());
 		
-		System.out.println("Choisissez votre map:");
+		System.out.println("Choisissez votre map : ");
 		for(int i = 0; i < warriors.getMaps().size(); i++) {
 			Map map = warriors.getMaps().get(i);
 			System.out.println(i+1 + " - " + map.getName());
 		}
 		Map choosenMap = warriors.getMaps().get(Integer.parseInt(sc.nextLine()) - 1);
+		System.out.println("Vous avez choisi : " + choosenMap.getName());
 
 		GameState gameState = warriors.createGame(playerName, chosenHeroe, choosenMap);
 		String gameId = gameState.getGameId();
 		while (gameState.getGameStatus() == GameStatus.IN_PROGRESS) {
 			System.out.println(gameState.getLastLog());
-			System.out.println("\nAppuyer sur une touche pour lancer le dé"); 
+			System.out.println("\nAppuyer sur une touche pour lancer le dÃ©");
 			if(sc.hasNext()) {
 				sc.nextLine();
 				gameState = warriors.nextTurn(gameId);
