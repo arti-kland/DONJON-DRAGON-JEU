@@ -16,11 +16,10 @@ public class GameStateImpl implements GameState {
     private int locationHero = 0;
 
     public GameStateImpl ( String playerName, Hero hero, Map map){
-        this.gameId = gameId;
         this.playerName = playerName;
         this.hero = hero;
         this.map = map;
-        this.log = "Bienvenu dans le jeu";
+        this.log = "Bienvenu dans le jeu :" + playerName ;
         this.statusGame = GameStatus.IN_PROGRESS;
     }
 
@@ -31,7 +30,7 @@ public class GameStateImpl implements GameState {
 
     @Override
     public String getGameId() {
-        return gameId;
+        return "L'ID est : ";
     }
 
     @Override
@@ -64,6 +63,7 @@ public class GameStateImpl implements GameState {
 
     @Override
     public int getCurrentCase() {
+
         return this.locationHero;
     }
 
@@ -79,7 +79,6 @@ public class GameStateImpl implements GameState {
     public void heroMove(int nbDe){
         locationHero = locationHero + nbDe;
     }
-
 
 
 }
