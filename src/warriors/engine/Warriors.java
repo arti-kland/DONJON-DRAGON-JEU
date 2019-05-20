@@ -7,25 +7,31 @@ import java.util.List;
 public class Warriors implements WarriorsAPI {
     private Hashtable<String, GameStateImpl> myGameStates = new Hashtable();
     GameStateImpl myCurrentGame;
+    Board myMap = new Board("Easy", 64);
+    Board myMap2 = new Board("Medium", 64);
+    Board myMap3 = new Board("Hard", 64);
 
     @Override
     public List<Hero> getHeroes() {
-        Personnages hunts = new Guerrier("Alucart", 5, 5);
-        Personnages elfe = new Magicien("Cyclop", 3, 8);
+        Personnages hunts = new Guerrier(" *** Alucart ***", 5, 5, 10, 10);
+        Personnages hunts1 = new Guerrier(" *** Saber ***", 6, 4, 12, 9);
+        Personnages elfe = new Magicien(" *** Cyclop ***", 3, 8, 6, 15);
+        Personnages elfe1 = new Magicien(" *** Miya ***", 4, 7, 7, 13);
         List<Hero> listHeros = new ArrayList<>();
         listHeros.add(hunts);
         listHeros.add(elfe);
+        listHeros.add(hunts1);
+        listHeros.add(elfe1);
         return listHeros;
     }
 
     @Override
     public List<Map> getMaps() {
-        Board myMap = new Board("Tous les chemins mènent à la mort !!! ", 64);
-        List<Map> map1 = new ArrayList<>();
-        map1.add(myMap);
-        //        setNumberOfCase();
-//        myGameStates.getCurrentCase();
-        return map1;
+        List<Map> maps = new ArrayList<>();
+        maps.add(myMap);
+        maps.add(myMap2);
+        maps.add(myMap3);
+        return maps;
     }
 
     @Override
@@ -42,8 +48,14 @@ public class Warriors implements WarriorsAPI {
         int pos = myCurrentGame.getLocationHero() + valeurDe;
         if(pos + valeurDe <= 64) {
             myCurrentGame.heroMove(valeurDe);
-            myCurrentGame.setLastLog(myCurrentGame.getPlayerName() + " à fait un : " + valeurDe + "\n" + myCurrentGame.getPlayerName() +" est sur la case n° : " + pos  + "\n" + checkCase(pos, gameID));
-
+            Personnages myHero  =(Personnages)myCurrentGame.getHero();
+            Board myBoard = ((Board) myCurrentGame.getMap());
+            myBoard.getBoardLength(pos).updateHero(myHero);
+            myCurrentGame.setLastLog(myCurrentGame.getPlayerName() + " à fait un : " + valeurDe + "\n" + myCurrentGame.getPlayerName() +" est sur la case n° : " + pos  + "\n" + checkCase(pos, gameID) + " " + myCurrentGame.getHero());
+            if (myHero.getNiveauVie() <= 0){
+                myCurrentGame.setGameStatus(GameStatus.GAME_OVER);
+                myCurrentGame.setLastLog("Vous êtes MORT " + myCurrentGame.getPlayerName() + " !!!!!" + " entrainez-vous et réessayez ! ");
+            }
         }else{
             myCurrentGame.setGameStatus(GameStatus.FINISHED);
             myCurrentGame.setLastLog("Bravo " + myCurrentGame.getPlayerName() + " vous avez gagné !!! ");
@@ -55,12 +67,6 @@ public class Warriors implements WarriorsAPI {
         String nomCase = ((Board) myGameStates.get(gameID).getMap()).getCase().get(pos).toString();
         return nomCase;
 
-//        return ;
-//        if(currentCase.getName() == "Dragon"){
-//            //method1 ex: combat
-//        }else if (currentCase.getName() == "Sorcier"){
-//            //method2
-//        }
     }
 }
 
