@@ -3,40 +3,40 @@ package warriors.engine;
 public class Magicien extends Personnages {
 
 
-    public Magicien (String name, int niveauVie, int niveauAttaque, int niveauVieMax, int niveauAttaqueMax ){
-        super(name, niveauVie, niveauAttaque, niveauVieMax, niveauAttaqueMax);
+    public Magicien(String classe, String name, int niveauVie, int niveauAttaque, int niveauVieMax, int niveauAttaqueMax) {
+        super(classe, name, niveauVie, niveauAttaque, niveauVieMax, niveauAttaqueMax);
     }
 
-        /////SETTER/////
-         public void setClass(String newClasse) {
+    /////SETTER/////
+    public void setClass(String newClasse) {
 
-            this.classe = newClasse;
-        }
+        this.classe = newClasse;
+    }
 
-        public void setNiveauVie(int newNiveauVie) {
+    public void setNiveauVie(int newNiveauVie) {
 
-            this.niveauVie = newNiveauVie;
-        }
+        this.niveauVie = newNiveauVie;
+    }
 
-        public void setNiveauAttaque(int newNiveauAttaque) {
+    public void setNiveauAttaque(int newNiveauAttaque) {
 
-            this.niveauAttaque = newNiveauAttaque;
-        }
+        this.niveauAttaque = newNiveauAttaque;
+    }
 
-        /////GETTER/////
-        public String getClasse() {
+    /////GETTER/////
+    public String getClasse() {
 
-            return classe;
-        }
+        return classe;
+    }
 
-        public int getNiveauVie() {
+    public int getNiveauVie() {
 
-            return niveauVie;
-        }
+        return niveauVie;
+    }
 
-        public int getNiveauAttaque() {
+    public int getNiveauAttaque() {
 
-            return niveauAttaque;
-         }
+        return niveauAttaque;
+    }
 
 }

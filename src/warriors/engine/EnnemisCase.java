@@ -7,23 +7,27 @@ public class EnnemisCase extends Cases {
     private int ennemisAttack;
     private String addMessage = "";
 
-    public Personnages updateHero(Personnages currentHero){
+    public Personnages updateHero(Personnages currentHero) {
         while (currentHero.getNiveauVie() > 0 && ennemisLife > 0) {
-                fight(currentHero);
-            }
+            fight(currentHero);
+        }
         return currentHero;
     }
 
 
-    public EnnemisCase (String nameCase, int ennemisLife, int ennemisAttack){
+    public EnnemisCase(String nameCase, int ennemisLife, int ennemisAttack) {
         super(nameCase);
         setEnnemisAttack(ennemisAttack);
         setEnnemisLife(ennemisLife);
-        addMessage = " Vous êtes tombez sur  : " + getNameCase() + "\n vous attaquez !\n";
+        addMessage = " Vous êtes tombez sur  : " + getNameCase() + "\n il à une vie de : " + getEnnemisLife() + "\n il à une attaque de : " + getEnemisAttack() +  "\n vous attaquez !\n";
     }
 
     public String getEnemisName() {
         return enemisName;
+    }
+
+    public int getEnemisAttack() {
+        return ennemisAttack;
     }
 
     public void setEnemisName(String newEnemisName) {
@@ -53,17 +57,31 @@ public class EnnemisCase extends Cases {
     @Override
     public String toString() {
 
-                    return addMessage;
+        return addMessage;
     }
 
-    public void fight(Personnages currentHero){
-      ennemisLife = ennemisLife - currentHero.getAttackLevel();
+    public void fight(Personnages currentHero) {
+        int critique = 1 + (int) (Math.random() * ((20 - 1) + 1));
+        if (critique != 10) {
+            ennemisLife = ennemisLife - currentHero.getAttackLevel();
+            addMessage += " vous infligez : " + currentHero.getAttackLevel() + " de dégats !\n";
+        } else {
+            ennemisLife = ennemisLife - (currentHero.getAttackLevel() * 2);
+            addMessage += " vous lancez CRITIQUE ! et infligez : " + (currentHero.getAttackLevel() * 2) + " de dégats !\n";
+        }
         if (ennemisLife > 0) {
-             currentHero.setNiveauVie(currentHero.getNiveauVie() - ennemisAttack);
-            addMessage +=  enemisName + " attaque et vous inflige : " + getWeaponAttack() + " de dégats !\n";
+            critique = 1 + (int) (Math.random() * ((20 - 1) + 1));
+            if (critique != 12) {
+                currentHero.setNiveauVie(currentHero.getNiveauVie() - ennemisAttack);
+                addMessage += enemisName + " attaque et vous inflige : " + getWeaponAttack() + " de dégats !\n";
 
-        }else {
-            addMessage += "Vous avez tué " + enemisName +  "\n";
+            } else if (critique == 12) {
+                currentHero.setNiveauVie(currentHero.getNiveauVie() - (ennemisAttack * 2));
+                addMessage += enemisName + " lance CRITIQUE ! et vous inflige : " + (getWeaponAttack() * 2) + " de dégats !\n";
+            }
+
+        } else {
+            addMessage += "Vous avez tué " + enemisName + "\n";
         }
     }
 }

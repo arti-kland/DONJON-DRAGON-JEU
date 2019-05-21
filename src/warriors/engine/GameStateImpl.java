@@ -19,7 +19,7 @@ public class GameStateImpl implements GameState {
         this.playerName = playerName;
         this.hero = hero;
         this.map = map;
-        this.log = "Bienvenu dans le jeu :" + playerName ;
+        this.log = "Bienvenu dans le jeu : " + playerName ;
         this.statusGame = GameStatus.IN_PROGRESS;
     }
 

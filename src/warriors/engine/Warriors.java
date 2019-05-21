@@ -7,16 +7,16 @@ import java.util.List;
 public class Warriors implements WarriorsAPI {
     private Hashtable<String, GameStateImpl> myGameStates = new Hashtable();
     GameStateImpl myCurrentGame;
-    Board myMap = new Board("Easy", 64);
-    Board myMap2 = new Board("Medium", 64);
-    Board myMap3 = new Board("Hard", 64);
+    Board myMap = new Board("Easy - Promenons nous dans les bois !", 64);
+    Board myMap2 = new Board("Medium - Promenons nous dans le cimetière !!", 64);
+    Board myMap3 = new Board("Hard - Promenons nous en enfert !!!", 64);
 
     @Override
     public List<Hero> getHeroes() {
-        Personnages hunts = new Guerrier(" *** Alucart ***", 5, 5, 10, 10);
-        Personnages hunts1 = new Guerrier(" *** Saber ***", 6, 4, 12, 9);
-        Personnages elfe = new Magicien(" *** Cyclop ***", 3, 8, 6, 15);
-        Personnages elfe1 = new Magicien(" *** Miya ***", 4, 7, 7, 13);
+        Personnages hunts = new Guerrier("Guerrier"," *** Alucart ***", 5, 5, 10, 10);
+        Personnages hunts1 = new Guerrier("Guerrier"," *** Saber ***", 6, 4, 12, 9);
+        Personnages elfe = new Magicien("Magicien"," *** Cyclop ***", 3, 8, 6, 15);
+        Personnages elfe1 = new Magicien("Magicien"," *** Miya ***", 4, 7, 7, 13);
         List<Hero> listHeros = new ArrayList<>();
         listHeros.add(hunts);
         listHeros.add(elfe);

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Scanner;
+
 import warriors.contracts.GameState;
 import warriors.contracts.GameStatus;
 import warriors.contracts.Hero;
@@ -70,7 +71,7 @@ public class ClientConsole {
                 }
             }
             System.out.println(gameState.getLastLog());
-        }else {
+        } else {
             String contentArgs = "";
             try {
                 contentArgs = new String(Files.readAllBytes(Paths.get(path)));
@@ -82,16 +83,17 @@ public class ClientConsole {
         }
     }
 
-    private static void debug(String contentArgs, GameState gameState, WarriorsAPI warriors,String gameId) {
+    private static void debug(String contentArgs, GameState gameState, WarriorsAPI warriors, String gameId) {
 
-        String [] dice = contentArgs.split(",");
-        for (String var : dice){
+        String[] dice = contentArgs.split(",");
+        for (String var : dice) {
             int valeurDe = Integer.parseInt(var);
             if (gameState.getGameStatus() == GameStatus.IN_PROGRESS) {
                 System.out.println(gameState.getLastLog());
-                gameState = ((Warriors)warriors).nextTurnDebug(gameId, valeurDe);
+                gameState = ((Warriors) warriors).nextTurnDebug(gameId, valeurDe);
+            } else {
+                break;
             }
-            else{break;}
         }
         System.out.println(gameState.getLastLog());
     }

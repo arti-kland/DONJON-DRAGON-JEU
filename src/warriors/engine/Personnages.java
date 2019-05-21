@@ -1,4 +1,5 @@
 package warriors.engine;
+
 import warriors.contracts.Hero;
 
 abstract class Personnages implements Hero {
@@ -11,7 +12,8 @@ abstract class Personnages implements Hero {
     protected int niveauAttaquekMax;
     protected int niveauAttaque;
 
-    public Personnages ( String name, int niveauVie,  int niveauAttaque, int niveauVieMax, int niveauAttaquekMax){
+    public Personnages(String classe, String name, int niveauVie, int niveauAttaque, int niveauVieMax, int niveauAttaquekMax) {
+        this.classe = classe;
         this.name = name;
         this.niveauVie = niveauVie;
         this.niveauAttaque = niveauAttaque;
@@ -19,7 +21,14 @@ abstract class Personnages implements Hero {
         this.niveauAttaquekMax = niveauAttaquekMax;
     }
 
-        /////SETTER/////
+    /////SETTER/////
+
+
+    public void setClasse(String newClasse) {
+
+        this.classe = newClasse;
+    }
+
     public void setName(String newName) {
 
         this.name = newName;
@@ -51,22 +60,32 @@ abstract class Personnages implements Hero {
     }
 
     /////GETTER/////
+    public String getClasse() {
+
+        return classe;
+    }
+
     public int getNiveauVie() {
 
-        return niveauVie; }
+        return niveauVie;
+    }
 
     public int getNiveauVieMax() {
 
-        return niveauVieMax; }
+        return niveauVieMax;
+    }
 
     public String getName() {
-        return name; }
+        return name;
+    }
 
     public String getImage() {
-        return image; }
+        return image;
+    }
 
     public int getLife() {
-        return niveauVie; }
+        return niveauVie;
+    }
 
     public int getAttackLevel() {
 
