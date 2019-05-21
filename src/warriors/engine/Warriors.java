@@ -45,18 +45,27 @@ public class Warriors implements WarriorsAPI {
     public GameState nextTurn(String gameID) {
         myCurrentGame = myGameStates.get(gameID);
         int valeurDe = myCurrentGame.throwDice();
+        return playGame(myCurrentGame, valeurDe, gameID);
+    }
+
+    public GameState nextTurnDebug(String gameID, int valeurDe) {
+        myCurrentGame = myGameStates.get(gameID);
+        return playGame(myCurrentGame, valeurDe, gameID);
+    }
+
+    public GameState playGame(GameStateImpl myCurrentGame, int valeurDe, String gameID){
         int pos = myCurrentGame.getLocationHero() + valeurDe;
-        if(pos + valeurDe <= 64) {
+        if (pos <= 64) {
             myCurrentGame.heroMove(valeurDe);
-            Personnages myHero  =(Personnages)myCurrentGame.getHero();
+            Personnages myHero = (Personnages) myCurrentGame.getHero();
             Board myBoard = ((Board) myCurrentGame.getMap());
             myBoard.getBoardLength(pos).updateHero(myHero);
-            myCurrentGame.setLastLog(myCurrentGame.getPlayerName() + " à fait un : " + valeurDe + "\n" + myCurrentGame.getPlayerName() +" est sur la case n° : " + pos  + "\n" + checkCase(pos, gameID) + " " + myCurrentGame.getHero());
-            if (myHero.getNiveauVie() <= 0){
+            myCurrentGame.setLastLog(myCurrentGame.getPlayerName() + " à fait un : " + valeurDe + "\n" + myCurrentGame.getPlayerName() + " est sur la case n° : " + pos + "\n" + checkCase(pos, gameID) + " " + myCurrentGame.getHero());
+            if (myHero.getNiveauVie() <= 0) {
                 myCurrentGame.setGameStatus(GameStatus.GAME_OVER);
                 myCurrentGame.setLastLog("Vous êtes MORT " + myCurrentGame.getPlayerName() + " !!!!!" + " entrainez-vous et réessayez ! ");
             }
-        }else{
+        } else {
             myCurrentGame.setGameStatus(GameStatus.FINISHED);
             myCurrentGame.setLastLog("Bravo " + myCurrentGame.getPlayerName() + " vous avez gagné !!! ");
         }
@@ -66,7 +75,6 @@ public class Warriors implements WarriorsAPI {
     public String checkCase(int pos,String gameID) {
         String nomCase = ((Board) myGameStates.get(gameID).getMap()).getCase().get(pos).toString();
         return nomCase;
-
     }
 }
 

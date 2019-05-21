@@ -80,6 +80,6 @@ abstract class Personnages implements Hero {
 
     @Override
     public String toString() {
-        return name + " à " + niveauVie + " point de vie, " + " et " + niveauAttaque + " point d'attaque !";
+        return name + " à " + niveauVie + " points de vie, " + " et " + niveauAttaque + " points d'attaque !";
     }
 }
