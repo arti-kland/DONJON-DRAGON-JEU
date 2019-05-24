@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+/**
+ *
+ */
 public class Warriors implements WarriorsAPI {
     private Hashtable<String, GameStateImpl> myGameStates = new Hashtable();
     GameStateImpl myCurrentGame;
@@ -11,6 +14,10 @@ public class Warriors implements WarriorsAPI {
     Board myMap2 = new Board("Medium - Promenons nous dans le cimetière !!", 64);
     Board myMap3 = new Board("Hard - Promenons nous en enfert !!!", 64);
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Hero> getHeroes() {
         Personnages hunts = new Guerrier("Guerrier"," *** Alucart ***", 5, 5, 10, 10);
@@ -25,6 +32,10 @@ public class Warriors implements WarriorsAPI {
         return listHeros;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Map> getMaps() {
         List<Map> maps = new ArrayList<>();
@@ -34,6 +45,13 @@ public class Warriors implements WarriorsAPI {
         return maps;
     }
 
+    /**
+     *
+     * @param playerName the name of the player
+     * @param hero the chosen hero for the game
+     * @param map the chosen map for the game
+     * @return
+     */
     @Override
     public GameState createGame(String playerName, Hero hero, Map map) {
         GameStateImpl myGameStateImpl = new GameStateImpl(playerName, hero, map);
@@ -41,6 +59,11 @@ public class Warriors implements WarriorsAPI {
         return myGameStateImpl;
     }
 
+    /**
+     *
+     * @param gameID the ID of the game
+     * @return
+     */
     @Override
     public GameState nextTurn(String gameID) {
         myCurrentGame = myGameStates.get(gameID);
@@ -48,14 +71,27 @@ public class Warriors implements WarriorsAPI {
         return playGame(myCurrentGame, valeurDe, gameID);
     }
 
+    /**
+     *
+     * @param gameID
+     * @param valeurDe
+     * @return
+     */
     public GameState nextTurnDebug(String gameID, int valeurDe) {
         myCurrentGame = myGameStates.get(gameID);
         return playGame(myCurrentGame, valeurDe, gameID);
     }
 
+    /**
+     *
+     * @param myCurrentGame
+     * @param valeurDe
+     * @param gameID
+     * @return
+     */
     public GameState playGame(GameStateImpl myCurrentGame, int valeurDe, String gameID){
         int pos = myCurrentGame.getLocationHero() + valeurDe;
-        if (pos <= 64) {
+        if (pos < 64) {
             myCurrentGame.heroMove(valeurDe);
             Personnages myHero = (Personnages) myCurrentGame.getHero();
             Board myBoard = ((Board) myCurrentGame.getMap());
@@ -63,7 +99,7 @@ public class Warriors implements WarriorsAPI {
             myCurrentGame.setLastLog(myCurrentGame.getPlayerName() + " à fait un : " + valeurDe + "\n" + myCurrentGame.getPlayerName() + " est sur la case n° : " + pos + "\n" + checkCase(pos, gameID) + " " + myCurrentGame.getHero());
             if (myHero.getNiveauVie() <= 0) {
                 myCurrentGame.setGameStatus(GameStatus.GAME_OVER);
-                myCurrentGame.setLastLog("Vous êtes MORT " + myCurrentGame.getPlayerName() + " !!!!!" + " entrainez-vous et réessayez ! ");
+                myCurrentGame.setLastLog(myCurrentGame.getLastLog() + "\n Vous êtes MORT " + myCurrentGame.getPlayerName() + " !!!!!" + " entrainez-vous et réessayez ! ");
             }
         } else {
             myCurrentGame.setGameStatus(GameStatus.FINISHED);
@@ -72,6 +108,12 @@ public class Warriors implements WarriorsAPI {
         return myCurrentGame;
     }
 
+    /**
+     *
+     * @param pos
+     * @param gameID
+     * @return
+     */
     public String checkCase(int pos,String gameID) {
         String nomCase = ((Board) myGameStates.get(gameID).getMap()).getCase().get(pos).toString();
         return nomCase;

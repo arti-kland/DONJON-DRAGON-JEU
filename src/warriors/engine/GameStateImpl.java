@@ -15,6 +15,12 @@ public class GameStateImpl implements GameState {
     private GameStatus statusGame;
     private int locationHero = 0;
 
+    /**
+     *
+     * @param playerName
+     * @param hero
+     * @param map
+     */
     public GameStateImpl ( String playerName, Hero hero, Map map){
         this.playerName = playerName;
         this.hero = hero;
@@ -23,44 +29,80 @@ public class GameStateImpl implements GameState {
         this.statusGame = GameStatus.IN_PROGRESS;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getPlayerName() {
         return this.playerName;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getGameId() {
         return "L'ID est : ";
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public GameStatus getGameStatus() {
         return statusGame;
     }
 
+    /**
+     *
+     * @param statusGame
+     */
     public void setGameStatus(GameStatus statusGame) {
         this.statusGame = statusGame;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Hero getHero() {
         return this.hero;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Map getMap() {
         return this.map;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getLastLog() {
         return log;
     }
 
+    /**
+     *
+     * @param log
+     */
     public void setLastLog(String log){
         this.log = log;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getCurrentCase() {
 
@@ -71,11 +113,19 @@ public class GameStateImpl implements GameState {
         return locationHero;
     }
 
+    /**
+     *
+     * @return
+     */
     public int throwDice(){
         int nbDe = 1 + (int) (Math.random() * ((6 - 1) + 1));
         return nbDe;
     }
 
+    /**
+     *
+     * @param nbDe
+     */
     public void heroMove(int nbDe){
         locationHero = locationHero + nbDe;
     }

@@ -5,6 +5,11 @@ public class SortsCase extends WeaponCase {
     private String sortName;
     private String addMessage = "";
 
+    /**
+     *
+     * @param nameCase
+     * @param weaponAttack
+     */
     public SortsCase(String nameCase, int weaponAttack) {
 
         super(nameCase, weaponAttack);
@@ -12,6 +17,11 @@ public class SortsCase extends WeaponCase {
 
     }
 
+    /**
+     *
+     * @param currentHero
+     * @return
+     */
     public Personnages updateHero(Personnages currentHero) {
         if (currentHero instanceof Magicien) {
             if (currentHero.getAttackLevel() < currentHero.getNiveauAttaquekMax()) {
@@ -28,17 +38,28 @@ public class SortsCase extends WeaponCase {
         return currentHero;
     }
 
+    /**
+     *
+     * @param newSortName
+     */
     public void setSortName(String newSortName) {
 
         this.sortName = newSortName;
     }
 
-
+    /**
+     *
+     * @return
+     */
     public String getSortName() {
 
         return sortName;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
 

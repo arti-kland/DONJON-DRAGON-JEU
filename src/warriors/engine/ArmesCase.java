@@ -1,16 +1,29 @@
 package warriors.engine;
 
+/**
+ *
+ */
 public class ArmesCase extends WeaponCase {
 
     private String armeName;
     private String addMessage = "";
 
+    /**
+     *
+     * @param nameCase
+     * @param weaponAttack
+     */
     public ArmesCase(String nameCase, int weaponAttack) {
 
         super(nameCase, weaponAttack);
         setArmeName(armeName);
     }
 
+    /**
+     *
+     * @param currentHero
+     * @return
+     */
     public Personnages updateHero(Personnages currentHero) {
         if (currentHero instanceof Guerrier) {
             if (currentHero.getAttackLevel() < currentHero.getNiveauAttaquekMax()) {
@@ -28,19 +41,29 @@ public class ArmesCase extends WeaponCase {
         return currentHero;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
 
         return super.toString() + "\n" + addMessage;
     }
 
-
+    /**
+     *
+     * @param newArmeName
+     */
     public void setArmeName(String newArmeName) {
 
         this.armeName = newArmeName;
     }
 
-
+    /**
+     *
+     * @return
+     */
     public String getArmeName() {
 
         return armeName;
