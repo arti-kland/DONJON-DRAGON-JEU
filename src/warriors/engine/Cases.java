@@ -6,16 +6,14 @@ abstract public class Cases {
 
 
     /**
-     *
      * @param nameCase
      */
-    public Cases ( String nameCase){
+    public Cases(String nameCase) {
 
         this.nameCase = nameCase;
     }
 
     /**
-     *
      * @param newNameCase
      */
     /////SETTER/////
@@ -27,7 +25,6 @@ abstract public class Cases {
     /////GETTER/////
 
     /**
-     *
      * @return
      */
     public String getNameCase() {
@@ -36,14 +33,12 @@ abstract public class Cases {
     }
 
     /**
-     *
      * @param currentHero
      * @return
      */
     public abstract Personnages updateHero(Personnages currentHero);
 
     /**
-     *
      * @return
      */
     @Override

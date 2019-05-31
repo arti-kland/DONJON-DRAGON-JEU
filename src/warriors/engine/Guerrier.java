@@ -6,52 +6,23 @@ package warriors.engine;
 public class Guerrier extends Personnages {
 
     /**
+     * +
      *
+     * @param idHero
      * @param classe
      * @param name
-     * @param niveauVie
-     * @param niveauAttaque
-     * @param niveauVieMax
-     * @param niveauAttaqueMax
+     * @param life
+     * @param attackLevel
+     * @param maxLife
+     * @param maxAttackLevel
      */
-    public Guerrier(String classe, String name, int niveauVie, int niveauAttaque, int niveauVieMax, int niveauAttaqueMax) {
-        super(classe, name, niveauVie, niveauAttaque, niveauVieMax, niveauAttaqueMax);
+    public Guerrier(int idHero, String classe, String name, int life, int attackLevel, int maxLife, int maxAttackLevel, String image) {
+        super(idHero, classe, name, life, attackLevel, maxLife, maxAttackLevel, image);
     }
 
-    /**
-     *
-     * @param newNiveauVie
-     */
-    public void setNiveauVie(int newNiveauVie) {
-
-        this.niveauVie = newNiveauVie;
+    public Guerrier() {
+        super();
     }
 
-    /**
-     *
-     * @param newNiveauAttaque
-     */
-    public void setNiveauAttaque(int newNiveauAttaque) {
-
-        this.niveauAttaque = newNiveauAttaque;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public int getNiveauVie() {
-
-        return niveauVie;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public int getNiveauAttaque() {
-
-        return niveauAttaque;
-    }
 
 }

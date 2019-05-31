@@ -3,22 +3,22 @@ package warriors.engine;
 public class Magicien extends Personnages {
 
     /**
-     *
+     * @param idHero
      * @param classe
      * @param name
-     * @param niveauVie
-     * @param niveauAttaque
-     * @param niveauVieMax
-     * @param niveauAttaqueMax
+     * @param life
+     * @param attack
+     * @param maxLife
+     * @param maxAttackLevel
+     * @param image
      */
-    public Magicien(String classe, String name, int niveauVie, int niveauAttaque, int niveauVieMax, int niveauAttaqueMax) {
-        super(classe, name, niveauVie, niveauAttaque, niveauVieMax, niveauAttaqueMax);
+    public Magicien(int idHero, String classe, String name, int life, int attack, int maxLife, int maxAttackLevel, String image) {
+        super(idHero, classe, name, life, attack, maxLife, maxAttackLevel, image);
     }
 
     /////SETTER/////
 
     /**
-     *
      * @param newClasse
      */
     public void setClass(String newClasse) {
@@ -27,27 +27,17 @@ public class Magicien extends Personnages {
     }
 
     /**
-     *
-     * @param newNiveauVie
+     * @param newLife
      */
-    public void setNiveauVie(int newNiveauVie) {
+    public void setLife(int newLife) {
 
-        this.niveauVie = newNiveauVie;
+        this.life = newLife;
     }
 
-    /**
-     *
-     * @param newNiveauAttaque
-     */
-    public void setNiveauAttaque(int newNiveauAttaque) {
-
-        this.niveauAttaque = newNiveauAttaque;
-    }
 
     /////GETTER/////
 
     /**
-     *
      * @return
      */
     public String getClasse() {
@@ -56,21 +46,12 @@ public class Magicien extends Personnages {
     }
 
     /**
-     *
      * @return
      */
-    public int getNiveauVie() {
+    public int getLife() {
 
-        return niveauVie;
+        return life;
     }
 
-    /**
-     *
-     * @return
-     */
-    public int getNiveauAttaque() {
-
-        return niveauAttaque;
-    }
 
 }

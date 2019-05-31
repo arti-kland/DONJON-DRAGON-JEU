@@ -15,7 +15,6 @@ public class Board implements Map {
     private ArrayList<Cases> boardLength = new ArrayList<>();
 
     /**
-     *
      * @param nomBoard
      * @param numberOfCase
      */
@@ -28,7 +27,6 @@ public class Board implements Map {
     /////GETTER//////
 
     /**
-     *
      * @param pos
      * @return
      */
@@ -38,7 +36,6 @@ public class Board implements Map {
     }
 
     /**
-     *
      * @return
      */
     public String getName() {
@@ -47,7 +44,6 @@ public class Board implements Map {
     }
 
     /**
-     *
      * @return
      */
     public int getNumberOfCase() {
@@ -58,7 +54,6 @@ public class Board implements Map {
     /////SETTER//////
 
     /**
-     *
      * @param newNomCases
      */
     public void setName(String newNomCases) {
@@ -67,7 +62,6 @@ public class Board implements Map {
     }
 
     /**
-     *
      * @param numCase
      */
     public void setNumberOfCase(int numCase) {
@@ -90,7 +84,7 @@ public class Board implements Map {
 
     /**
      *
-//     */
+     //     */
 //    public void makeCaseEasy() {
 //        /////CASE ENNEMIES//////
 //        for (int j = 0; j < 64; j++) {
@@ -233,7 +227,6 @@ public class Board implements Map {
 //    }
 
     /**
-     *
      * @return
      */
     public List<Cases> getCase() {
@@ -242,7 +235,6 @@ public class Board implements Map {
     }
 
     /**
-     *
      * @return
      */
     @Override

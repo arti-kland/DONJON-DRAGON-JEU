@@ -1,5 +1,7 @@
 package warriors.engine;
+
 import warriors.contracts.*;
+
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
@@ -9,31 +11,27 @@ import java.util.List;
  */
 public class Warriors implements WarriorsAPI {
     private Hashtable<String, GameStateImpl> myGameStates = new Hashtable();
+    private List<Hero> listHeros;
     GameStateImpl myCurrentGame;
     Board myMap = new Board("Easy - Promenons nous dans les bois !", 64);
     Board myMap2 = new Board("Medium - Promenons nous dans le cimetière !!", 64);
     Board myMap3 = new Board("Hard - Promenons nous en enfert !!!", 64);
 
     /**
-     *
      * @return
      */
     @Override
     public List<Hero> getHeroes() {
-        Personnages hunts = new Guerrier("Guerrier"," *** Alucart ***", 5, 5, 10, 10);
-        Personnages hunts1 = new Guerrier("Guerrier"," *** Saber ***", 6, 4, 12, 9);
-        Personnages elfe = new Magicien("Magicien"," *** Cyclop ***", 3, 8, 6, 15);
-        Personnages elfe1 = new Magicien("Magicien"," *** Miya ***", 4, 7, 7, 13);
-        List<Hero> listHeros = new ArrayList<>();
-        listHeros.add(hunts);
-        listHeros.add(elfe);
-        listHeros.add(hunts1);
-        listHeros.add(elfe1);
+
         return listHeros;
     }
 
+    public void setHeroes(List listHeros) {
+
+        this.listHeros = listHeros;
+    }
+
     /**
-     *
      * @return
      */
     @Override
@@ -46,10 +44,9 @@ public class Warriors implements WarriorsAPI {
     }
 
     /**
-     *
      * @param playerName the name of the player
-     * @param hero the chosen hero for the game
-     * @param map the chosen map for the game
+     * @param hero       the chosen hero for the game
+     * @param map        the chosen map for the game
      * @return
      */
     @Override
@@ -60,9 +57,8 @@ public class Warriors implements WarriorsAPI {
     }
 
     /**
-     *
      * @param gameID the ID of the game
-     * @return
+     * @return playGame (myCurrentGame, valeurDe, gameID)
      */
     @Override
     public GameState nextTurn(String gameID) {
@@ -72,7 +68,6 @@ public class Warriors implements WarriorsAPI {
     }
 
     /**
-     *
      * @param gameID
      * @param valeurDe
      * @return
@@ -83,13 +78,12 @@ public class Warriors implements WarriorsAPI {
     }
 
     /**
-     *
      * @param myCurrentGame
      * @param valeurDe
      * @param gameID
      * @return
      */
-    public GameState playGame(GameStateImpl myCurrentGame, int valeurDe, String gameID){
+    public GameState playGame(GameStateImpl myCurrentGame, int valeurDe, String gameID) {
         int pos = myCurrentGame.getLocationHero() + valeurDe;
         if (pos < 64) {
             myCurrentGame.heroMove(valeurDe);
@@ -97,7 +91,7 @@ public class Warriors implements WarriorsAPI {
             Board myBoard = ((Board) myCurrentGame.getMap());
             myBoard.getBoardLength(pos).updateHero(myHero);
             myCurrentGame.setLastLog(myCurrentGame.getPlayerName() + " à fait un : " + valeurDe + "\n" + myCurrentGame.getPlayerName() + " est sur la case n° : " + pos + "\n" + checkCase(pos, gameID) + " " + myCurrentGame.getHero());
-            if (myHero.getNiveauVie() <= 0) {
+            if (myHero.getLife() <= 0) {
                 myCurrentGame.setGameStatus(GameStatus.GAME_OVER);
                 myCurrentGame.setLastLog(myCurrentGame.getLastLog() + "\n Vous êtes MORT " + myCurrentGame.getPlayerName() + " !!!!!" + " entrainez-vous et réessayez ! ");
             }
@@ -109,14 +103,14 @@ public class Warriors implements WarriorsAPI {
     }
 
     /**
-     *
      * @param pos
      * @param gameID
      * @return
      */
-    public String checkCase(int pos,String gameID) {
+    public String checkCase(int pos, String gameID) {
         String nomCase = ((Board) myGameStates.get(gameID).getMap()).getCase().get(pos).toString();
         return nomCase;
     }
+
 }
 

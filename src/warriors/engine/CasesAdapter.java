@@ -1,10 +1,19 @@
 package warriors.engine;
 
-import warriors.engine.Cases;
 import com.google.gson.*;
+
 import java.lang.reflect.Type;
 
+
+
 public class CasesAdapter implements JsonSerializer<Cases>, JsonDeserializer<Cases> {
+    /**
+     * methode add type to object and Json file for prepare rebuild map
+     * @param src
+     * @param typeOfSrc
+     * @param context
+     * @return result = new object with type (class) add
+     */
     @Override
     public JsonElement serialize(Cases src, Type typeOfSrc, JsonSerializationContext context) {
         JsonObject result = new JsonObject();
@@ -14,6 +23,14 @@ public class CasesAdapter implements JsonSerializer<Cases>, JsonDeserializer<Cas
         return result;
     }
 
+    /**
+     * method help to rebuild a map from the Json file by typing the case
+     * @param json
+     * @param typeOfT
+     * @param context
+     * @return context.deserialize
+     * @throws JsonParseException
+     */
     @Override
     public Cases deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
             throws JsonParseException {
@@ -23,7 +40,7 @@ public class CasesAdapter implements JsonSerializer<Cases>, JsonDeserializer<Cas
 
         try {
             return context.deserialize(element, Class.forName("warriors.engine." + type));
-        } catch (JsonParseException | ClassNotFoundException  cnfe) {
+        } catch (JsonParseException | ClassNotFoundException cnfe) {
             throw new JsonParseException("Unknown element type: " + type, cnfe);
         }
     }

@@ -11,19 +11,17 @@ public class EnnemisCase extends Cases {
     private String addMessage = "";
 
     /**
-     *
      * @param currentHero
      * @return
      */
     public Personnages updateHero(Personnages currentHero) {
-        while (currentHero.getNiveauVie() > 0 && ennemisLife > 0) {
+        while (currentHero.getLife() > 0 && ennemisLife > 0) {
             fight(currentHero);
         }
         return currentHero;
     }
 
     /**
-     *
      * @param nameCase
      * @param ennemisLife
      * @param ennemisAttack
@@ -32,11 +30,10 @@ public class EnnemisCase extends Cases {
         super(nameCase);
         setEnnemisAttack(ennemisAttack);
         setEnnemisLife(ennemisLife);
-        addMessage = " Vous êtes tombez sur  : " + getNameCase() + "\n il à une vie de : " + getEnnemisLife() + "\n il à une attaque de : " + getEnemisAttack() +  "\n vous attaquez !\n";
+        addMessage = " Vous êtes tombez sur  : " + getNameCase() + "\n il à une vie de : " + getEnnemisLife() + "\n il à une attaque de : " + getEnemisAttack() + "\n vous attaquez !\n";
     }
 
     /**
-     *
      * @return
      */
     public String getEnemisName() {
@@ -44,7 +41,6 @@ public class EnnemisCase extends Cases {
     }
 
     /**
-     *
      * @return
      */
     public int getEnemisAttack() {
@@ -52,7 +48,6 @@ public class EnnemisCase extends Cases {
     }
 
     /**
-     *
      * @param newEnemisName
      */
     public void setEnemisName(String newEnemisName) {
@@ -60,7 +55,6 @@ public class EnnemisCase extends Cases {
     }
 
     /**
-     *
      * @param newEnnemisLife
      */
     public void setEnnemisLife(int newEnnemisLife) {
@@ -69,7 +63,6 @@ public class EnnemisCase extends Cases {
     }
 
     /**
-     *
      * @param newEnnemisAttack
      */
     public void setEnnemisAttack(int newEnnemisAttack) {
@@ -78,7 +71,6 @@ public class EnnemisCase extends Cases {
     }
 
     /**
-     *
      * @return
      */
     public int getEnnemisLife() {
@@ -87,7 +79,6 @@ public class EnnemisCase extends Cases {
     }
 
     /**
-     *
      * @return
      */
     public int getWeaponAttack() {
@@ -96,7 +87,6 @@ public class EnnemisCase extends Cases {
     }
 
     /**
-     *
      * @return
      */
     @Override
@@ -106,8 +96,17 @@ public class EnnemisCase extends Cases {
     }
 
     /**
-     *
-     * @param currentHero
+     * Method who manage the fight mode
+     * currentHero attack first check if critique is call
+     * decrement ennemi of the attackHero
+     * check if ennemi still a life
+     * if no = currentHero win
+     * if yes = check if ennemi call critique
+     * decrement currentHero of ennemiAttack
+     * check if currentHero still a life
+     * if no = gameOver
+     * if yes = restart method fight
+     * @param currentHero mofify by the fight method
      */
     public void fight(Personnages currentHero) {
         int critique = 1 + (int) (Math.random() * ((20 - 1) + 1));
@@ -121,11 +120,11 @@ public class EnnemisCase extends Cases {
         if (ennemisLife > 0) {
             critique = 1 + (int) (Math.random() * ((20 - 1) + 1));
             if (critique != 12) {
-                currentHero.setNiveauVie(currentHero.getNiveauVie() - ennemisAttack);
+                currentHero.setNiveauVie(currentHero.getLife() - ennemisAttack);
                 addMessage += enemisName + " attaque et vous inflige : " + getWeaponAttack() + " de dégats !\n";
 
             } else if (critique == 12) {
-                currentHero.setNiveauVie(currentHero.getNiveauVie() - (ennemisAttack * 2));
+                currentHero.setNiveauVie(currentHero.getLife() - (ennemisAttack * 2));
                 addMessage += enemisName + " lance CRITIQUE ! et vous inflige : " + (getWeaponAttack() * 2) + " de dégats !\n";
             }
 

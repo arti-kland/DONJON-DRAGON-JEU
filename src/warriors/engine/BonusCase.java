@@ -8,33 +8,30 @@ public class BonusCase extends Cases {
     private int bonusLvl;
 
     /**
-     *
      * @param currentHero
      * @return
      */
-    public Personnages updateHero(Personnages currentHero){
-        if (currentHero.getNiveauVie() < currentHero.getNiveauVieMax()) {
-            int newLife = currentHero.getNiveauVie() + bonusLvl;
-            if (newLife > currentHero.getNiveauVieMax()){
-                newLife = currentHero.niveauVieMax;
+    public Personnages updateHero(Personnages currentHero) {
+        if (currentHero.getLife() < currentHero.getMaxLife()) {
+            int newLife = currentHero.getLife() + bonusLvl;
+            if (newLife > currentHero.getMaxLife()) {
+                newLife = currentHero.maxLife;
             }
             currentHero.setNiveauVie(newLife);
         }
-       return currentHero;
+        return currentHero;
     }
 
     /**
-     *
      * @param nameCase
      * @param bonusLvl
      */
-    public BonusCase (String nameCase, int bonusLvl){
+    public BonusCase(String nameCase, int bonusLvl) {
         super(nameCase);
         setBonusLvl(bonusLvl);
     }
 
     /**
-     *
      * @param newBonusLvl
      */
     public void setBonusLvl(int newBonusLvl) {
@@ -42,7 +39,6 @@ public class BonusCase extends Cases {
     }
 
     /**
-     *
      * @return
      */
     public int getbonusLvl() {
@@ -50,7 +46,6 @@ public class BonusCase extends Cases {
     }
 
     /**
-     *
      * @return
      */
     @Override

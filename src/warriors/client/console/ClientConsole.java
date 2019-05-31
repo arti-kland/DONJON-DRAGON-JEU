@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
 
@@ -20,6 +21,7 @@ import warriors.contracts.GameStatus;
 import warriors.contracts.Hero;
 import warriors.contracts.Map;
 import warriors.contracts.WarriorsAPI;
+import warriors.dao.HerosDAO;
 import warriors.engine.Board;
 import warriors.engine.Cases;
 import warriors.engine.CasesAdapter;
@@ -30,7 +32,8 @@ public class ClientConsole {
     private static String MENU_COMMENCER_PARTIE = "1";
     private static String MENU_COMMENCER_TEST = "2";
     private static String MENU_SAVE_GAME = "3";
-    private static String MENU_QUITTER = "4";
+    private static String MENU_CRUD_HEROS = "4";
+    private static String MENU_QUITTER = "5";
     private static ArrayList<Board> mapJsonSave = new ArrayList<>();
 
     /**
@@ -41,6 +44,7 @@ public class ClientConsole {
         WarriorsAPI warriors = new Warriors();
         Scanner sc = new Scanner(System.in);
         String menuChoice = "";
+        HerosDAO test = new HerosDAO();
         do {
             menuChoice = displayMenu(sc);
             if (menuChoice.equals(MENU_COMMENCER_PARTIE)) {
@@ -49,6 +53,8 @@ public class ClientConsole {
                 startGame(warriors, sc, true, arg0, false);
             } else if (menuChoice.equals(MENU_SAVE_GAME)) {
                 startGame(warriors, sc, false, arg0, true);
+            } else if (menuChoice.equals(MENU_CRUD_HEROS)) {
+                test.menuCrud();
             }
         } while (!menuChoice.equals(MENU_QUITTER));
         sc.close();
@@ -83,9 +89,9 @@ public class ClientConsole {
     static void read(boolean saveGame) {
         mapJsonSave.clear();
         File folder;
-        if(!saveGame){
+        if (!saveGame) {
             folder = new File("./partieClassic");
-        }else {
+        } else {
             folder = new File("./partieSave");
         }
         File[] listOfFiles = folder.listFiles();
@@ -114,31 +120,31 @@ public class ClientConsole {
      * @param path
      */
     private static void startGame(WarriorsAPI warriors, Scanner sc, boolean debug, String path, boolean saveGame) {
+
         System.out.println();
         System.out.println("Entrez votre nom : ");
         String playerName = sc.nextLine();
 
         System.out.println("Choisissez votre héro : ");
-        for (int i = 0; i < warriors.getHeroes().size(); i++) {
-            Hero heroe = warriors.getHeroes().get(i);
-            System.out.println(i + 1 + " - " + heroe.getName());
-            System.out.println("    Force d'attaque : " + heroe.getAttackLevel());
-            System.out.println("    Niveau de vie : " + heroe.getLife());
-        }
+        HerosDAO test = new HerosDAO();
+        List<Hero> listHeros;
+        listHeros = test.getAllHero();
+        ((Warriors) warriors).setHeroes(listHeros);
+        test.displayHero(false);
         Hero chosenHeroe = warriors.getHeroes().get(Integer.parseInt(sc.nextLine()) - 1);
         System.out.println("Vous avez choisi : " + chosenHeroe.getName());
 
         System.out.println("Choisissez votre map : ");
         Map choosenMap;
 
-            read(saveGame);
-            int i = 0;
-            for (Board var : mapJsonSave) {
-                Board choosenSaveMap = var;
-                System.out.println(i + 1 + " - " + choosenSaveMap.getName());
-                i++;
-            }
-            choosenMap = mapJsonSave.get(Integer.parseInt(sc.nextLine()) - 1);
+        read(saveGame);
+        int i = 0;
+        for (Board var : mapJsonSave) {
+            Board choosenSaveMap = var;
+            System.out.println(i + 1 + " - " + choosenSaveMap.getName());
+            i++;
+        }
+        choosenMap = mapJsonSave.get(Integer.parseInt(sc.nextLine()) - 1);
 
         System.out.println("Vous avez choisi : " + choosenMap.getName());
 
@@ -220,7 +226,8 @@ public class ClientConsole {
         System.out.println("1 - Commencer une partie");
         System.out.println("2 - Commencer un test");
         System.out.println("3 - Commencer une partie sauvgardé");
-        System.out.println("4 - Quitter");
+        System.out.println("4 - CRUD Héros");
+        System.out.println("5 - Quitter");
         if (sc.hasNext()) {
             String choice = sc.nextLine();
             return choice;

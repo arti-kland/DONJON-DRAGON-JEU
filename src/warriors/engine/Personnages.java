@@ -2,38 +2,48 @@ package warriors.engine;
 
 import warriors.contracts.Hero;
 
-abstract class Personnages implements Hero {
+public abstract class Personnages implements Hero {
 
+    protected int idHero;
     protected String classe;
     protected String name;
+    protected int life;
+    protected int maxLife;
+    protected int attackLevel;
+    protected int maxAttackLevel;
     protected String image;
-    protected int niveauVieMax;
-    protected int niveauVie;
-    protected int niveauAttaquekMax;
-    protected int niveauAttaque;
+
 
     /**
-     *
      * @param classe
      * @param name
-     * @param niveauVie
-     * @param niveauAttaque
-     * @param niveauVieMax
-     * @param niveauAttaquekMax
+     * @param life
+     * @param attackLevel
+     * @param maxLife
+     * @param maxAttackLevel
      */
-    public Personnages(String classe, String name, int niveauVie, int niveauAttaque, int niveauVieMax, int niveauAttaquekMax) {
+    public Personnages(int idHero, String classe, String name, int life, int attackLevel, int maxLife, int maxAttackLevel, String image) {
+        this.idHero = idHero;
         this.classe = classe;
         this.name = name;
-        this.niveauVie = niveauVie;
-        this.niveauAttaque = niveauAttaque;
-        this.niveauVieMax = niveauVieMax;
-        this.niveauAttaquekMax = niveauAttaquekMax;
+        this.life = life;
+        this.attackLevel = attackLevel;
+        this.maxLife = maxLife;
+        this.maxAttackLevel = maxAttackLevel;
+        this.image = image;
     }
 
-    /////SETTER/////
+    public Personnages() {
+
+    }
+
+/////SETTER/////
+
+    public void setIdHero(int idHero) {
+        this.idHero = idHero;
+    }
 
     /**
-     *
      * @param newClasse
      */
     public void setClasse(String newClasse) {
@@ -42,7 +52,6 @@ abstract class Personnages implements Hero {
     }
 
     /**
-     *
      * @param newName
      */
     public void setName(String newName) {
@@ -50,55 +59,38 @@ abstract class Personnages implements Hero {
         this.name = newName;
     }
 
-    /**
-     *
-     * @param newNiveauVieMax
-     */
-    public void setNiveauVieMax(int newNiveauVieMax) {
 
-        this.niveauVieMax = newNiveauVieMax;
+    /**
+     * @param life
+     */
+    public void setNiveauVie(int life) {
+
+        this.life = life;
     }
 
-    /**
-     *
-     * @param newImage
-     */
-    public void setImage(String newImage) {
-
-        this.image = newImage;
+    public void setLife(int life) {
+        this.life = life;
     }
 
-    /**
-     *
-     * @param niveauVie
-     */
-    public void setNiveauVie(int niveauVie) {
-
-        this.niveauVie = niveauVie;
+    public void setMaxAttackLevel(int maxAttackLevel) {
+        this.maxAttackLevel = maxAttackLevel;
     }
 
-    /**
-     *
-     * @param niveauAttaque
-     */
-    public void setNiveauAttaque(int niveauAttaque) {
-
-        this.niveauAttaque = niveauAttaque;
+    public void setMaxLife(int maxLife) {
+        this.maxLife = maxLife;
     }
 
-    /**
-     *
-     * @param newNiveauAttaqueMax
-     */
-    public void setNiveauAttaqueMax(int newNiveauAttaqueMax) {
-
-        this.niveauAttaquekMax = niveauAttaquekMax;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     /////GETTER/////
 
+    public int getIdHero() {
+        return idHero;
+    }
+
     /**
-     *
      * @return
      */
     public String getClasse() {
@@ -107,25 +99,14 @@ abstract class Personnages implements Hero {
     }
 
     /**
-     *
      * @return
      */
-    public int getNiveauVie() {
-
-        return niveauVie;
+    public int getMaxLife() {
+        return maxLife;
     }
 
-    /**
-     *
-     * @return
-     */
-    public int getNiveauVieMax() {
-
-        return niveauVieMax;
-    }
 
     /**
-     *
      * @return
      */
     public String getName() {
@@ -133,45 +114,36 @@ abstract class Personnages implements Hero {
     }
 
     /**
-     *
      * @return
      */
+    public int getLife() {
+        return life;
+    }
+
+    public int getAttackLevel() {
+        return attackLevel;
+    }
+
+    public void setAttackLevel(int attackLevel) {
+        this.attackLevel = attackLevel;
+    }
+
+    public int getMaxAttackLevel() {
+        return maxAttackLevel;
+    }
+
+
+    @Override
     public String getImage() {
         return image;
     }
 
     /**
-     *
-     * @return
-     */
-    public int getLife() {
-        return niveauVie;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public int getAttackLevel() {
-
-        return niveauAttaque;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public int getNiveauAttaquekMax() {
-
-        return niveauAttaquekMax;
-    }
-
-    /**
-     *
      * @return
      */
     @Override
     public String toString() {
-        return name + " à " + niveauVie + " points de vie, " + " et " + niveauAttaque + " points d'attaque !";
+        return name + " à " + life + " points de vie, " + " et " + attackLevel + " points d'attaque !";
     }
+
 }

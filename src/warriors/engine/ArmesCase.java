@@ -9,7 +9,6 @@ public class ArmesCase extends WeaponCase {
     private String addMessage = "";
 
     /**
-     *
      * @param nameCase
      * @param weaponAttack
      */
@@ -17,24 +16,20 @@ public class ArmesCase extends WeaponCase {
 
         super(nameCase, weaponAttack);
         setArmeName(armeName);
+
     }
 
     /**
-     *
-     * @param currentHero
-     * @return
+     * methode check if the currentHero can pickup the weapon fin on the case sort for magicien and arme for Guerrier
+     * and then increment the attack of the currentHero, and check that he's not oversize the maxAttackLevel of the currrentHero
+     * @param currentHero = Hero choose by the player
+     * @return currentHero + weaponAttack
      */
     public Personnages updateHero(Personnages currentHero) {
         if (currentHero instanceof Guerrier) {
-            if (currentHero.getAttackLevel() < currentHero.getNiveauAttaquekMax()) {
-                int newAttak = currentHero.getAttackLevel() + weaponAttack;
-                if (newAttak > currentHero.getNiveauAttaquekMax()) {
-                    newAttak = currentHero.niveauAttaquekMax;
-                }
-                addMessage += " Vous avez trouvez : " + getNameCase() + " vous gagnez : " + getWeaponAttack() + " point d'attaque !\n";
-
-                currentHero.setNiveauAttaque(newAttak);
-            }
+            int newAttak = currentHero.getAttackLevel() + weaponAttack;
+            addMessage += " Vous avez trouvez : " + getNameCase() + " vous gagnez : " + getWeaponAttack() + " points d'attaque !\n";
+            currentHero.setAttackLevel(newAttak);
         } else {
             addMessage += "Vous n'êtes pas un Guerrier ! vous ne pouvez pas utiliser les Armes !! \n";
         }
@@ -42,7 +37,6 @@ public class ArmesCase extends WeaponCase {
     }
 
     /**
-     *
      * @return
      */
     @Override
@@ -52,7 +46,6 @@ public class ArmesCase extends WeaponCase {
     }
 
     /**
-     *
      * @param newArmeName
      */
     public void setArmeName(String newArmeName) {
@@ -60,10 +53,11 @@ public class ArmesCase extends WeaponCase {
         this.armeName = newArmeName;
     }
 
+
     /**
-     *
-     * @return
+     * @return armeName
      */
+
     public String getArmeName() {
 
         return armeName;

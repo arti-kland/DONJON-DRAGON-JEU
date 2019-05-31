@@ -1,4 +1,5 @@
 package warriors.engine;
+
 import warriors.contracts.GameState;
 import warriors.contracts.GameStatus;
 import warriors.contracts.Hero;
@@ -16,21 +17,19 @@ public class GameStateImpl implements GameState {
     private int locationHero = 0;
 
     /**
-     *
      * @param playerName
      * @param hero
      * @param map
      */
-    public GameStateImpl ( String playerName, Hero hero, Map map){
+    public GameStateImpl(String playerName, Hero hero, Map map) {
         this.playerName = playerName;
         this.hero = hero;
         this.map = map;
-        this.log = "Bienvenu dans le jeu : " + playerName ;
+        this.log = "Bienvenu dans le jeu : " + playerName;
         this.statusGame = GameStatus.IN_PROGRESS;
     }
 
     /**
-     *
      * @return
      */
     @Override
@@ -39,7 +38,6 @@ public class GameStateImpl implements GameState {
     }
 
     /**
-     *
      * @return
      */
     @Override
@@ -48,7 +46,6 @@ public class GameStateImpl implements GameState {
     }
 
     /**
-     *
      * @return
      */
     @Override
@@ -57,7 +54,6 @@ public class GameStateImpl implements GameState {
     }
 
     /**
-     *
      * @param statusGame
      */
     public void setGameStatus(GameStatus statusGame) {
@@ -65,7 +61,6 @@ public class GameStateImpl implements GameState {
     }
 
     /**
-     *
      * @return
      */
     @Override
@@ -74,7 +69,6 @@ public class GameStateImpl implements GameState {
     }
 
     /**
-     *
      * @return
      */
     @Override
@@ -83,7 +77,6 @@ public class GameStateImpl implements GameState {
     }
 
     /**
-     *
      * @return
      */
     @Override
@@ -92,15 +85,13 @@ public class GameStateImpl implements GameState {
     }
 
     /**
-     *
      * @param log
      */
-    public void setLastLog(String log){
+    public void setLastLog(String log) {
         this.log = log;
     }
 
     /**
-     *
      * @return
      */
     @Override
@@ -109,24 +100,22 @@ public class GameStateImpl implements GameState {
         return this.locationHero;
     }
 
-    public int getLocationHero(){
+    public int getLocationHero() {
         return locationHero;
     }
 
     /**
-     *
      * @return
      */
-    public int throwDice(){
+    public int throwDice() {
         int nbDe = 1 + (int) (Math.random() * ((6 - 1) + 1));
         return nbDe;
     }
 
     /**
-     *
      * @param nbDe
      */
-    public void heroMove(int nbDe){
+    public void heroMove(int nbDe) {
         locationHero = locationHero + nbDe;
     }
 

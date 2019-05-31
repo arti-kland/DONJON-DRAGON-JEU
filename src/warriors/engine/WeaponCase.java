@@ -5,7 +5,6 @@ abstract class WeaponCase extends Cases {
     protected int weaponAttack;
 
     /**
-     *
      * @param nameCase
      * @param weaponAttack
      */
@@ -17,7 +16,6 @@ abstract class WeaponCase extends Cases {
     }
 
     /**
-     *
      * @param newWeaponAttack
      */
     public void setWeaponAttack(int newWeaponAttack) {
@@ -26,7 +24,6 @@ abstract class WeaponCase extends Cases {
     }
 
     /**
-     *
      * @return
      */
     public int getWeaponAttack() {
