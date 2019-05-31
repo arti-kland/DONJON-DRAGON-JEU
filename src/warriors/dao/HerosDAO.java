@@ -29,7 +29,6 @@ public class HerosDAO {
 
     /**
      * @return
-     * @throws
      */
     public List<Hero> getAllHero() {
         List<Hero> listHeros = new ArrayList<>();
