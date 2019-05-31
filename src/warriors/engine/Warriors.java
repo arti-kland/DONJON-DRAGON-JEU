@@ -63,34 +63,36 @@ public class Warriors implements WarriorsAPI {
     @Override
     public GameState nextTurn(String gameID) {
         myCurrentGame = myGameStates.get(gameID);
-        int valeurDe = myCurrentGame.throwDice();
-        return playGame(myCurrentGame, valeurDe, gameID);
+        int dicevalue = myCurrentGame.throwDice();
+        return playGame(myCurrentGame, dicevalue, gameID);
     }
 
     /**
      * @param gameID
-     * @param valeurDe
+     * @param dicevalue
      * @return
      */
-    public GameState nextTurnDebug(String gameID, int valeurDe) {
+    public GameState nextTurnDebug(String gameID, int dicevalue) {
         myCurrentGame = myGameStates.get(gameID);
-        return playGame(myCurrentGame, valeurDe, gameID);
+        return playGame(myCurrentGame, dicevalue, gameID);
     }
 
     /**
+     * Method managing all the action during one trun
+     * throw dice + move hero + action on case + check gameStatus
      * @param myCurrentGame
-     * @param valeurDe
+     * @param dicevalue
      * @param gameID
-     * @return
+     * @return myCurrentGame = new currentHero states
      */
-    public GameState playGame(GameStateImpl myCurrentGame, int valeurDe, String gameID) {
-        int pos = myCurrentGame.getLocationHero() + valeurDe;
+    public GameState playGame(GameStateImpl myCurrentGame, int dicevalue, String gameID) {
+        int pos = myCurrentGame.getLocationHero() + dicevalue;
         if (pos < 64) {
-            myCurrentGame.heroMove(valeurDe);
+            myCurrentGame.heroMove(dicevalue);
             Personnages myHero = (Personnages) myCurrentGame.getHero();
             Board myBoard = ((Board) myCurrentGame.getMap());
             myBoard.getBoardLength(pos).updateHero(myHero);
-            myCurrentGame.setLastLog(myCurrentGame.getPlayerName() + " à fait un : " + valeurDe + "\n" + myCurrentGame.getPlayerName() + " est sur la case n° : " + pos + "\n" + checkCase(pos, gameID) + " " + myCurrentGame.getHero());
+            myCurrentGame.setLastLog(myCurrentGame.getPlayerName() + " à fait un : " + dicevalue + "\n" + myCurrentGame.getPlayerName() + " est sur la case n° : " + pos + "\n" + checkCase(pos, gameID) + " " + myCurrentGame.getHero());
             if (myHero.getLife() <= 0) {
                 myCurrentGame.setGameStatus(GameStatus.GAME_OVER);
                 myCurrentGame.setLastLog(myCurrentGame.getLastLog() + "\n Vous êtes MORT " + myCurrentGame.getPlayerName() + " !!!!!" + " entrainez-vous et réessayez ! ");
